@@ -107,6 +107,7 @@ public class MainTester {
 	}
 	 */
 
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 
@@ -149,31 +150,57 @@ public class MainTester {
 		*/
 		
 		//Segunda parte do trabalho
-		InsertionSort iSort = new InsertionSort();
-		int[] kints1Array = new int[1000];
+		Insertion insertion = new Insertion();
+		Integer[] kints1Insertion = new Integer[1000];
 		int i = 0;
 		
 		try{
 			scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\1Kints.txt"));
-			Stopwatch timer = new Stopwatch();
 			while(scanner.hasNext()){
-				
-				kints1Array[i++] = scanner.nextInt();
-				
-				
-			}
+				kints1Insertion[i++] = scanner.nextInt();
+				}
+			System.out.println("Before sort" + Arrays.toString(kints1Insertion));
+			Stopwatch timerInsertion = new Stopwatch();
+			insertion.sort(kints1Insertion);
 			
-				System.out.println(Arrays.toString(iSort.sort(kints1Array)));
-			
-			
-			System.out.println("\nTime: " + timer.elapsedTime());
+			System.out.println("Time: " + timerInsertion.elapsedTime() + "\nAfter sort: " + Arrays.toString(kints1Insertion) + "\n");
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
 		}
+		//------------------------------------------------------
+		Merge merge = new Merge();
+		Integer[] kints1Merge = new Integer[1000];
+		int j = 0;
+		try{
+			scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\1Kints.txt"));
+			while(scanner.hasNext()){
+				kints1Merge[j++] = scanner.nextInt();
+				}
+			System.out.println("Before sort" + Arrays.toString(kints1Merge));
+			Stopwatch timerMerge = new Stopwatch();
+			merge.sort(kints1Merge);
+			
+			System.out.println("Time: " + timerMerge.elapsedTime() + "\nAfter sort: " + Arrays.toString(kints1Merge) + "\n");
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}
+		//-----------------------------------------------------
+		QuickSort quick = new QuickSort();
+		Integer[] kints1Quick = new Integer[1000];
+		int x = 0;
 		
-		
-		
-		
+		try{
+			scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\1Kints.txt"));
+			while(scanner.hasNext()){
+				kints1Quick[x++] = scanner.nextInt();
+			}
+			System.out.println("Before sort" + Arrays.toString(kints1Quick));
+			Stopwatch timerQuick = new Stopwatch();
+			quick.sort(kints1Quick);
+			System.out.println("Time: " + timerQuick.elapsedTime() + "\nAfter sort: " + Arrays.toString(kints1Quick) + "\n");
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}
 		
 	}
 }

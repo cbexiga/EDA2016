@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class ResizeArray<Item> implements Iterable<Item> {
 
@@ -30,7 +29,6 @@ public class ResizeArray<Item> implements Iterable<Item> {
 			temp[i] = item[i];
 			item = temp;
 		}
-		//System.out.println("Aumentado: " + max);
 	}
 	
 	public void push(Item itm){
@@ -75,42 +73,6 @@ public class ResizeArray<Item> implements Iterable<Item> {
 			
 		}
 	}
-	
-	public static void main(String[] args){
-		
-		ResizeArray<Integer> s = new ResizeArray<>();
-		int numberOfExperiments = 50;
-		Scanner scanner;
-		
-		//for(int i = 0; i != numberOfExperiments; i++){
-			try{
-				scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\32Kints.txt"));
-				
-				Stopwatch watch = new Stopwatch();
-				//System.out.println(System.nanoTime());
-				while(scanner.hasNext()){
-					s.push(scanner.nextInt());
-				}
-				System.out.println("-------------------------------------------------\nTempo: " + watch.elapsedTime());
-				//System.out.println(System.nanoTime());
-			}catch(FileNotFoundException e){
-				e.printStackTrace();
-			}
-			
-			System.out.println(s.size());
-			
-			Stopwatch watch = new Stopwatch();
-			while(s.size() != 0){
-				//System.out.println(s.pop());
-				s.pop();
-			}
-			System.out.println("Tempo: " + watch.elapsedTime());
-			System.out.println(s.size());
-		
-		//}
-	}
-		
-		
 		
 	
 }
