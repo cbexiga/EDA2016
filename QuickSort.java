@@ -1,5 +1,10 @@
 package pt.europeia.eda;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class QuickSort {
 
 
@@ -102,25 +107,27 @@ public class QuickSort {
         return true;
     }
 
-    /*
-    private static void show(final Object[] values) {
-        for (Object value : values)
-            StdOut.println(value);
-    }
-
-    public static void main(final String[] arguments) {
-        final In in = new In(arguments[0]);
-        final String[] words = in.readAllStrings();
-        Quick.sort(words);
-        show(words);
-
-        StdRandom.shuffle(words);
-
-        StdOut.println();
-        for (int i = 0; i != words.length; i++) {
-            final String ith = Quick.select(words, i);
-            StdOut.println(ith);
-        }
-    }
-	*/
+    public static void main(String[] args) {
+		
+    	QuickSort quick = new QuickSort();
+		Integer[] kints1Quick = new Integer[1000];
+		int x = 0;
+		Scanner scanner;
+		
+		try{
+			scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\1Kints.txt"));
+			while(scanner.hasNext()){
+				kints1Quick[x++] = scanner.nextInt();
+			}
+			System.out.println("Before quick sort: " + Arrays.toString(kints1Quick));
+			Stopwatch timerQuick = new Stopwatch();
+			quick.sort(kints1Quick);
+			System.out.println("Time: " + timerQuick.elapsedTime() + "\nAfter quick sort: " + Arrays.toString(kints1Quick) + "\n");
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+	}
 }

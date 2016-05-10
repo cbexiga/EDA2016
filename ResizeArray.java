@@ -74,5 +74,38 @@ public class ResizeArray<Item> implements Iterable<Item> {
 		}
 	}
 		
+	public static void main(String[] args) {
+		
+		ResizeArray<Integer> resized = new ResizeArray<Integer>();
+		Scanner scanner;
+		int numberOfExperiments = 5;
+		
+		while(numberOfExperiments != 0){
+			try {
+				scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\1Kints.txt"));
+				Stopwatch watch2 = new Stopwatch();
+				
+				while(scanner.hasNext()){
+					resized.push(scanner.nextInt());
+				}
+				
+				System.out.println("Demorou a inserir no resized array: " + watch2.elapsedTime());
+			} catch (FileNotFoundException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+			Stopwatch watch2 = new Stopwatch();
+			while(resized.size() != 0){
+				resized.pop();
+			}
+			System.out.println("Demorou a retirar no resized array: " + watch2.elapsedTime());
+			System.out.println("------------------------------");
+			numberOfExperiments--;
+		}
+		
+		
+		
+	}
 	
 }

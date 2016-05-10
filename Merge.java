@@ -1,6 +1,10 @@
 package pt.europeia.eda;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Merge {
 
@@ -82,5 +86,27 @@ public class Merge {
 	        return true;
 	    }
 	
+	public static void main(String[] args) {
+		
+		Merge merge = new Merge();
+		Integer[] kints1Merge = new Integer[1000];
+		int j = 0;
+		Scanner scanner;
+		
+		try{
+			scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\1Kints.txt"));
+			while(scanner.hasNext()){
+				kints1Merge[j++] = scanner.nextInt();
+				}
+			System.out.println("Before merge sort: " + Arrays.toString(kints1Merge));
+			Stopwatch timerMerge = new Stopwatch();
+			merge.sort(kints1Merge);
+			
+			System.out.println("Time: " + timerMerge.elapsedTime() + "\nAfter merge sort: " + Arrays.toString(kints1Merge) + "\n");
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}
+		
+	}    
 	
 }
