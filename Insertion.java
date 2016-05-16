@@ -2,54 +2,51 @@ package pt.europeia.eda;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
+
 
 public class Insertion {
 	
-	 
-	public static <Item extends Comparable<? super Item>> void sort(
-            final Item[] values) {
-        for (int numberOfSortedItems = 1;
-             numberOfSortedItems < values.length;
-             numberOfSortedItems++)
-            for (int i = numberOfSortedItems; i != 0
-                    && isLess(values[i], values[i - 1]); i--)
-                swap(values, i - 1, i);
-
-        assert isIncreasing(values) :
-            "Array should be increasing after sorting.";
-    }
-
-    private static <Value extends Comparable<? super Value>> boolean isLess(
-            final Value first, final Value second) {
-        return first.compareTo(second) < 0;
-    }
-
-    private static void swap(final Object[] values, final int firstPosition,
-            final int secondPosition) {
-        final Object temporary = values[firstPosition];
-        values[firstPosition] = values[secondPosition];
-        values[secondPosition] = temporary;
-    }
-
-    private static <Item extends Comparable<? super Item>> boolean isIncreasing(
-            final Item[] values) {
-        for (int i = 1; i < values.length; i++)
-            if (isLess(values[i], values[i - 1]))
-                return false;
-        return true;
-    }
+	public Integer[] clean(final Integer[] value){
+		List<Integer> list = new ArrayList<Integer>(Arrays.asList(value));
+		list.removeAll(Collections.singleton(null));
+		return list.toArray(new Integer[list.size()]);
+	}
 	
-    
-    public static void main(String[] args) {
-    	Insertion insertion = new Insertion();
-		Integer[] kints1Insertion = new Integer[4000];
+	
+	public void sort(Integer[] integer){
+		
+		int valueToInsert, position;
+		
+		for(int i = 0; i != integer.length; i++){
+			valueToInsert = integer[i];
+			position = i;
+			
+			
+			while(position > 0 && integer[position -1] > valueToInsert){
+				integer[position] = integer[position -1];
+				position -= 1;
+			}
+			
+			integer[position] = valueToInsert;
+		}
+		
+		System.out.println(integer);
+	}
+  
+	public static void main(String[] args) {
+		
+		Insertion insertion = new Insertion();
+		Integer[] kints1Insertion = new Integer[1000];
 		int i = 0;
 		Scanner scanner;
-		
+	
 		try{
-			scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\4Kints.txt"));
+			scanner = new Scanner(new File("C:\\Users\\ricardon\\eda-2015-2016\\EDA 2015-2016\\data\\1Kints.txt"));
 			while(scanner.hasNext()){
 				kints1Insertion[i++] = scanner.nextInt();
 				}
@@ -61,6 +58,7 @@ public class Insertion {
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
 		}
+	
 	}
     
 }
